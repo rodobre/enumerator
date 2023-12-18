@@ -133,9 +133,7 @@ async function enumerateDomain({
   let completedRequests = 0
   const totalRequests = paths.length
   const requestQueue: (() => Promise<void>)[] = []
-  const acceptStatusCodes = status
-    .split(',')
-    .map((status) => new Number(status))
+  const acceptStatusCodes = status.split(',').map((status) => parseInt(status))
 
   // Function to update the status indicator
   const updateStatus = () => {
@@ -156,7 +154,6 @@ async function enumerateDomain({
             ...options,
             ...evalCustomScript(customScriptCode || '', {
               domain,
-              paths,
               concurrent,
               delay,
               status,
@@ -170,7 +167,7 @@ async function enumerateDomain({
         const response = await fetch(url, options)
 
         if (acceptStatusCodes.includes(response.status)) {
-          console.log(`[${response.status}] ${domain}/${path}`)
+          console.log(`\r\x1b[K[${response.status}] ${domain}/${path}`)
         }
       } catch (error) {
         console.error(`[ERROR] ${domain}/${path}: ${error}`)
