@@ -1,0 +1,17 @@
+{
+  "name": "enumerator",
+  "author": "rodobre",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@types/yargs": "^17.0.32",
+    "proxy-agent": "^6.3.1",
+    "yargs": "^17.7.2"
+  }
+}
